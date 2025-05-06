@@ -14,9 +14,9 @@ export default async function (req: VercelRequest, res: VercelResponse) {
 
   try {
     const aiResponse = await axios.post(
-      "https://api.openai.com/v1/chat/completions",
+      "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "gpt-3.5-turbo",
+        model: "openai/gpt-3.5-turbo",
         messages: [{ role: "user", content: message }],
       },
       {
