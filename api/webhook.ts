@@ -41,6 +41,14 @@ export default async function (req: VercelRequest, res: VercelResponse) {
 
     await bot.sendMessage(chatId, reply);
 
+    const updatedHistory = [
+      ...history,
+      { role: "user", content: message },
+      { role: "assistant", content: reply },
+    ];
+
+    await redis.set(userId, updatedHistory.slice(-15));
+
     res.status(200).send("Message handled");
   } catch (err) {
     console.error(err.response?.data || err.message);
