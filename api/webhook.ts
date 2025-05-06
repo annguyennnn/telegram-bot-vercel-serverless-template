@@ -24,7 +24,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
       }
     );
 
-    const reply = aiResponse.data.choices[0].message.content;
+    const reply = aiResponse?.data?.choices[0].message.content || "Something went wrong";
 
     await bot.sendMessage(chatId, reply);
 
