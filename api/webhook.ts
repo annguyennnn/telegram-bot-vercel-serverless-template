@@ -7,8 +7,8 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 export default async function (req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") return res.status(405).send("Only POST allowed");
 
-  const message = req.body.message?.text;
-  const chatId = req.body.message?.chat.id;
+  const message = req.body?.message?.text;
+  const chatId = req.body?.message?.chat.id;
 
   if (!message || !chatId) return res.status(200).send("No message");
 
@@ -24,7 +24,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
       }
     );
 
-    const reply = aiResponse?.data?.choices[0].message.content || "Something went wrong";
+    const reply = aiResponse?.data?.choices?.[0]?.message.content || "Something went wrong";
 
     await bot.sendMessage(chatId, reply);
 
