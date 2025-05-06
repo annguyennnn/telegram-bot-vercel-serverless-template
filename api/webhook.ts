@@ -3,7 +3,10 @@ import { OpenAI } from "openai";
 import { Redis } from "@upstash/redis";
 import bot from "../bot";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENAI_API_KEY,
+});
 const redis = Redis.fromEnv();
 
 export default async function (req: VercelRequest, res: VercelResponse) {
