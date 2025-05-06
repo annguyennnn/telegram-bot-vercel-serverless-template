@@ -31,6 +31,8 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   ];
 
   try {
+    bot.senChatAction(chatId, "typing");
+
     const response = await openai.chat.completions.create({
       model: "deepseek/deepseek-chat-v3-0324:free",
       messages,
