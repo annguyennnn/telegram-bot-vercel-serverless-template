@@ -34,7 +34,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     bot.sendChatAction(chatId, "typing");
 
     const response = await openai.chat.completions.create({
-      model: "google/gemini-2.5-pro-exp-03-25",
+      model: process.env.MODEL || "google/gemini-2.0-flash-exp:free",
       messages,
     });
 
